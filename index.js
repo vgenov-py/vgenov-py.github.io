@@ -21,7 +21,7 @@ const getData = () => {
     const adherenceField = document.querySelector("#adherence");
     let adherence = 0;
     const pillsToTake = pillsPerDay * diffOnDays;
-    const PillsTaken = pillsPerDay * pillsPerKit - pillsReturned;
+    const PillsTaken = kitsPerPatient * pillsPerKit - pillsReturned;
     adherence = (PillsTaken * 100) / pillsToTake;
 
     const daysWithoutMedicationField = document.querySelector(
