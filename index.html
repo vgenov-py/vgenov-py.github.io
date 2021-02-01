@@ -4,15 +4,96 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./index.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous" />
     <script src="./index.js" defer></script>
     <title>Pacient Compliance</title>
 </head>
 
 <body>
-    <input type="date" id="date1" />
-    <input type="date" id="date2" />
-    <button>Result On Days --></button>
-    <input type="text" id="text" />
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <span class="navbar-text"> Patient Compliance </span>
+        </div>
+    </nav>
+    <div class="container">
+        <ul class="list-group" style="margin: 5%">
+            <li class="list-group-item"><label for="date1">Visita 1</label></li>
+            <li class="list-group-item"><input type="date" id="date1" /></li>
+            <li class="list-group-item"><label for="date2">Visita 2</label></li>
+            <li class="list-group-item"><input type="date" id="date2" /></li>
+            <li class="list-group-item">
+                <label for="date1">Comprimidos por día</label>
+            </li>
+            <li class="list-group-item">
+                <select name="PPD" id="PPD" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+            </li>
+            <li class="list-group-item">
+                <label for="PPK">Comprimidos por Kit</label>
+            </li>
+            <li class="list-group-item">
+                <input type="text" name="" id="PPK" / required>
+            </li>
+            <li class="list-group-item">
+                <label for="KPP">Kits dispensados</label>
+            </li>
+            <li class="list-group-item">
+                <select name="KPP" id="KPP">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+            </li>
+            <li class="list-group-item">
+                <label for="pillThatWereReturn">Comprimidos devueltos</label>
+            </li>
+            <li class="list-group-item">
+                <input type="text" name="" id="pillsReturned" />
+            </li>
+            <li class="list-group-item">
+                <button id="whatShouldBe" class="btn btn-success">Calcular</button>
+            </li>
+        </ul>
+        <ul class="list-group" style="margin: 5%">
+            <li class="list-group-item">
+                <label for="pillThatWereReturn">Días entre visitas: <span id="visitsDifference"></span>
+          </label>
+            </li>
+            <li class="list-group-item">
+                <label for="pillThatWereReturn">Comprimidos a devolver: <span id="result"></span>
+          </label>
+            </li>
+            <!-- <li class="list-group-item">
+                <input type="text" id="result" />
+            </li> -->
+            <li class="list-group-item">
+                <label for="pillThatWereReturn">Adherencia: <span id="adherence"></span
+          ></label>
+            </li>
+            <li class="list-group-item">
+                <label for="pillThatWereReturn">Días sin medicación: <span id="daysWithoutMedicationField"></span>
+          </label>
+            </li>
+        </ul>
+    </div>
 </body>
 
 </html>
