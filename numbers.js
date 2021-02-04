@@ -34,13 +34,12 @@ const guess = () => {
     const pc = [...document.querySelector("#numToGuess").value];
     const user = document.querySelector("#user").value;
     let array = [...user];
-    console.log(array);
 
     //Guessing part:
     let exacts = 0;
     let missPlace = 0;
     let count = 0;
-    //LIST TEST:
+    //LIST PREPEND:
     const list = document.querySelector("#list");
     //^^^^^
     array.forEach((n) => {
@@ -54,14 +53,10 @@ const guess = () => {
     const li = document.createElement("li");
     li.innerText = `${user} ${missPlace}M & ${exacts}E`;
     list.prepend(li);
-    console.log(`${missPlace}M & ${exacts}E`);
-
-    //TEST: (Pushing to <ul>)
 };
-const guessButton = document.querySelector("#guessButton");
 const user = document.querySelector("#user");
 user.addEventListener("keydown", (e) => {
-    if (e.keyCode === 13) {
+    if (e.key === "Enter" || e.keyCode === 13 || e.code === "Enter") {
         return guess();
     }
 });
