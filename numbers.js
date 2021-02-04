@@ -1,6 +1,9 @@
 const numToGuess = () => {
     const makeARandom = document.querySelector("#makeARandom");
     const numberStatus = document.querySelector("#numberStatus");
+    const instructions = document.querySelector("#instructionsButton");
+    const instructionsSection = document.querySelector("#instructionsSection");
+    const game = document.querySelector("#game");
     const pc = document.querySelector("#numToGuess");
     let array = "";
     const random = () => Math.ceil(Math.random() * 9).toString();
@@ -13,28 +16,24 @@ const numToGuess = () => {
     }
     return (
         (pc.value = array),
-        (numberStatus.innerText = "Number Created!"),
-        (makeARandom.style.display = "none")
+        (numberStatus.innerText = "¡Número creado!"),
+        (makeARandom.style.display = "none"),
+        (game.style.display = ""),
+        (instructions.style.display = "none"),
+        (instructionsSection.style.display = "none")
     );
 };
 
 const makeARandom = document.querySelector("#makeARandom");
 makeARandom.addEventListener("click", numToGuess);
 
-// function guess() {
-//     let exacts = 0;
-//     let missPlace = 0;
-//     let count = 0;
-//     user.forEach((n) => {
-//         if (n === guess[count]) {
-//             exacts++;
-//         } else if (guess.includes(n)) {
-//             missPlace++;
-//         }
-//         count++;
-//     });
-//     console.log(`${missPlace}M & ${exacts}E`);
-// }
+const showInstructions = () => {
+    const instructionsSection = document.querySelector("#instructionsSection");
+    instructionsSection.style.display = "";
+};
+
+const instructions = document.querySelector("#instructionsButton");
+instructions.addEventListener("click", showInstructions);
 
 const guess = () => {
     const pc = [...document.querySelector("#numToGuess").value];

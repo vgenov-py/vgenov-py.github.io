@@ -16,17 +16,59 @@
         <input type="text" id="numToGuess" style="display: none" />
         <button id="makeARandom" class="button">Start!</button>
     </div>
-    <div class="container" id="numberStatus"></div>
     <div class="container">
-        <label for="user"></label>
-        <input type="text" id="user" class="textInput" />
+        <button id="instructionsButton" class="button">Instrucciones</button>
     </div>
-    <div class="container">
-        <h3 class="title">-Guesses-</h3>
-    </div>
-    <div class="container">
-        <ul id="list" class="ulist"></ul>
-    </div>
-</body>
-
+    <main>
+        <section class="container" id="instructionsSection" style="display: none">
+            <ul class="ulist">
+                <li>Instrucciones:</li>
+                <li>Al apretar el boton <em>Start</em>, el ordenar generará:</li>
+                <li>
+                    Un número a adivinar de cuatro cifras, sin dígitos repetidos y sin
+                    <em>ceros</em> (ej. <em>1234</em> )
+                </li>
+                <li>
+                    Para <em>adivinarlo</em>, debes introducir números con las mismas características y el ordenador te dará las siguientes pistas debajo
+                </li>
+                <li>
+                    <strong> 1M </strong> cuando alguno de los dígitos introducidos se encuentre en el número a adivinar pero <strong>NO</strong> en la misma posición
+                </li>
+                <li>
+                    (ej. <strong><span style="color: #6d6875">1</span></strong
+            >234 siendo el número a adivinar 567<strong
+              ><span style="color: #6d6875">1</span></strong
+            >)
+          </li>
+          <li>
+            <strong>1E</strong> cuando además de encontrarse el dígito introducido esté en la misma posición
+                </li>
+                <li>
+                    (ej. <strong><span style="color: #6d6875">5</span></strong
+            >234 siendo el número a adivinar
+            <strong><span style="color: #6d6875">5</span></strong
+            >671)
+          </li>
+          <li>
+            Tanto las propiedas <em>M</em> (movido) como <em>E</em> (exacto) son
+            acumulativas hasta un máximo de 4, ya que el número a adivinar tiene
+            esa cantidad de cifras
+          </li>
+        </ul>
+      </section>
+      <section id="game" style="display: none">
+        <div class="container" id="numberStatus"></div>
+        <div class="container">
+          <label for="user"></label>
+          <input type="text" id="user" class="textInput" />
+        </div>
+        <div class="container">
+          <h3 class="title">-Pistas-</h3>
+        </div>
+        <div class="container">
+          <ul id="list" class="ulist"></ul>
+        </div>
+      </section>
+    </main>
+  </body>
 </html>
