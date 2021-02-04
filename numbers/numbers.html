@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./numbers.js" defer></script>
+    <link rel="stylesheet" href="./numbers.css" />
+    <title>Guess The Num</title>
+</head>
+
+<body>
+    <nav class="navbar">Guess The Num!</nav>
+    <div class="container">
+        <label for="numToGuess"></label>
+        <input type="text" id="numToGuess" style="display: none" />
+        <button id="makeARandom" class="button">Start!</button>
+    </div>
+    <div class="container" id="numberStatus"></div>
+    <div class="container">
+        <label for="user"></label>
+        <input type="text" id="user" class="textInput" />
+    </div>
+    <div class="container">
+        <h3 class="title">-Guesses-</h3>
+    </div>
+    <div class="container">
+        <ul id="list" class="ulist"></ul>
+    </div>
+</body>
+
+</html>
