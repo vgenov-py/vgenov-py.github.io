@@ -1,4 +1,5 @@
 const numToGuess = () => {
+    const numberStatus = document.querySelector("#numberStatus");
     const pc = document.querySelector("#numToGuess");
     let array = "";
     const random = () => Math.ceil(Math.random() * 9).toString();
@@ -9,7 +10,7 @@ const numToGuess = () => {
             i++;
         }
     }
-    return (pc.value = array);
+    return (pc.value = array), (numberStatus.innerText = "Number Created!");
 };
 
 const makeARandom = document.querySelector("#makeARandom");
