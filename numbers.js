@@ -1,4 +1,5 @@
 const numToGuess = () => {
+    const makeARandom = document.querySelector("#makeARandom");
     const numberStatus = document.querySelector("#numberStatus");
     const pc = document.querySelector("#numToGuess");
     let array = "";
@@ -10,7 +11,11 @@ const numToGuess = () => {
             i++;
         }
     }
-    return (pc.value = array), (numberStatus.innerText = "Number Created!");
+    return (
+        (pc.value = array),
+        (numberStatus.innerText = "Number Created!"),
+        (makeARandom.style.display = "none")
+    );
 };
 
 const makeARandom = document.querySelector("#makeARandom");
