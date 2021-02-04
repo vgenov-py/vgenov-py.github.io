@@ -28,7 +28,21 @@ body {
     justify-content: center;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0;
+    /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+    /* Firefox */
+}
+
 .textInput {
+    -webkit-appearance: none;
     font-size: large;
     text-align: center;
     color: #7f7875;
@@ -38,6 +52,12 @@ body {
     border-style: solid 2px;
     border-radius: 5px;
     background-color: #eddcd2;
+}
+
+.textInput:hover {
+    -webkit-writing-mode: none;
+    -webkit-rtl-ordering: none;
+    -webkit-appearance: none;
 }
 
 .button {

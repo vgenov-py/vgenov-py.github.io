@@ -19,6 +19,7 @@
     <div class="container">
         <button id="instructionsButton" class="button">Instrucciones</button>
     </div>
+    <div class="container" id="winMessage" style="display: none">0</div>
     <main>
         <section class="container" id="instructionsSection" style="display: none">
             <ul class="ulist">
@@ -54,13 +55,14 @@
             acumulativas hasta un máximo de 4, ya que el número a adivinar tiene
             esa cantidad de cifras
           </li>
+          <li>¡Para ganar el juego llega a los 4 exactos!</li>
         </ul>
       </section>
       <section id="game" style="display: none">
         <div class="container" id="numberStatus"></div>
         <div class="container">
           <label for="user"></label>
-          <input type="text" id="user" class="textInput" />
+          <input type="number" id="user" class="textInput" />
         </div>
         <div class="container">
           <h3 class="title">-Pistas-</h3>

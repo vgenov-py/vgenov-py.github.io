@@ -39,6 +39,8 @@ const guess = () => {
     const pc = [...document.querySelector("#numToGuess").value];
     const user = document.querySelector("#user").value;
     let array = [...user];
+    const winMessage = document.querySelector("#winMessage");
+    const times = parseInt(winMessage.innerText) + 1;
 
     //Guessing part:
     let exacts = 0;
@@ -55,6 +57,15 @@ const guess = () => {
         }
         count++;
     });
+
+    winMessage.innerText = times;
+    document.querySelector("#user").value = "";
+    if (exacts === 4) {
+        winMessage.style.display = "";
+
+        winMessage.innerText = `¡Has ganado en ${times} intentos!`;
+        document.querySelector("#game").style.display = "none";
+    }
     const li = document.createElement("li");
     li.innerText = `${user} ${missPlace}M & ${exacts}E`;
     list.prepend(li);
