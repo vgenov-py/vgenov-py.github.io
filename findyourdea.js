@@ -166,12 +166,12 @@ window.navigator.geolocation.getCurrentPosition((position) => {
             const container = document.querySelector("#deasContainer");
             const tr = document.createElement("tr");
             const address = document.createElement("td");
-            address.innerText = `${nearestDea["direccion_via_codigo"]} ${nearestDea["direccion_via_nombre"]} ${nearestDea["direccion_portal_numero"]}`;
+            address.innerText = `${nearestDea["direccion_ubicacion"]} ${nearestDea["direccion_via_codigo"]} ${nearestDea["direccion_via_nombre"]} ${nearestDea["direccion_portal_numero"]}`;
             const tdDistance = document.createElement("td");
             tdDistance.innerText = Math.round(distance);
             const linkToMaps = document.createElement("a");
             a.innerText = "Maps";
-            a.href = `https://www.google.com/maps/dir/${user_lat},+${user_long}/${dea_latlong[0]},${dea_latlong[1]}`;
+            a.href = `https://www.google.com/maps/search/?api=1&query=${dea_latlong[0]},${dea_latlong[1]}`;
             a.style = "none";
             tr.append(address);
             tr.append(tdDistance);
