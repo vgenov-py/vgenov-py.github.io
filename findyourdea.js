@@ -130,8 +130,8 @@ window.navigator.geolocation.getCurrentPosition((position) => {
         .then((res) => res.json())
         .then((data) => {
             data = data["data"];
-            distanceToBeat = 100000;
-            nearestDea = null;
+            distanceToBeat = 0.002;
+            nearestDeas = [];
             data.forEach((dea) => {
                 x = "direccion_coordenada_x";
                 y = "direccion_coordenada_y";
@@ -143,22 +143,47 @@ window.navigator.geolocation.getCurrentPosition((position) => {
                     deaLatLong[1]
                 );
                 if (distanceFromUserToDea <= distanceToBeat) {
-                    nearestDea = dea;
-                    distanceToBeat = distanceFromUserToDea;
+                    dea[x] = deaLatLong[0];
+                    dea[y] = deaLatLong[1];
+
+                    nearestDeas.push(dea);
                 }
             });
-            console.log(nearestDea);
-            dea_latlong = to_latlon(
-                nearestDea["direccion_coordenada_x"],
-                nearestDea["direccion_coordenada_y"]
-            );
-            const distance = get_distance(
-                user_lat,
-                user_long,
-                deaLatLong[0],
-                deaLatLong[1]
-            );
+            console.log(nearestDeas);
+            console.log("Distance-->", distanceToBeat);
+            // dea_latlong = to_latlon(
+            //     nearestDea["direccion_coordenada_x"],
+            //     nearestDea["direccion_coordenada_y"]
+            // );
+            // console.log(dea_latlong);
+            // const distance = get_distance(
+            //     user_lat,
+            //     user_long,
+            //     deaLatLong[0],
+            //     deaLatLong[1]
+            // );
 
+            function show_deas_on_table(deas) {
+                deas.forEach((nearestDea) => {
+                    x = "direccion_coordenada_x";
+                    y = "direccion_coordenada_y";
+                    // const a = document.querySelector("#mapsLink");
+                    // const text = document.querySelector("#text");
+                    // text.innerText = `${nearestDea["direccion_via_codigo"]} ${nearestDea["direccion_via_nombre"]} ${nearestDea["direccion_portal_numero"]}`;
+                    // a.href = `https://www.google.com/maps/dir/${user_lat},+${user_long}/${dea_latlong[0]},${dea_latlong[1]}`;
+                    const container = document.querySelector("#deasContainer");
+                    const tr = document.createElement("tr");
+                    const address = document.createElement("td");
+                    address.innerText = `${nearestDea["direccion_ubicacion"]} ${nearestDea["direccion_via_codigo"]} ${nearestDea["direccion_via_nombre"]} ${nearestDea["direccion_portal_numero"]}`;
+                    const linkToMaps = document.createElement("a");
+                    linkToMaps.innerText = "Maps";
+                    linkToMaps.href = `https://www.google.com/maps/search/?api=1&query=${nearestDea[x]},${nearestDea[y]}`;
+                    tr.append(address);
+                    tr.append(linkToMaps);
+                    container.append(tr);
+                });
+            }
+            show_deas_on_table(nearestDeas);
             const a = document.querySelector("#mapsLink");
             const text = document.querySelector("#text");
             text.innerText = `${nearestDea["direccion_via_codigo"]} ${nearestDea["direccion_via_nombre"]} ${nearestDea["direccion_portal_numero"]}`;
@@ -167,14 +192,11 @@ window.navigator.geolocation.getCurrentPosition((position) => {
             const tr = document.createElement("tr");
             const address = document.createElement("td");
             address.innerText = `${nearestDea["direccion_ubicacion"]} ${nearestDea["direccion_via_codigo"]} ${nearestDea["direccion_via_nombre"]} ${nearestDea["direccion_portal_numero"]}`;
-            const tdDistance = document.createElement("td");
-            tdDistance.innerText = Math.round(distance);
             const linkToMaps = document.createElement("a");
             a.innerText = "Maps";
             a.href = `https://www.google.com/maps/search/?api=1&query=${dea_latlong[0]},${dea_latlong[1]}`;
             a.style = "none";
             tr.append(address);
-            tr.append(tdDistance);
             tr.append(a);
             container.append(tr);
             // a.append(p);
