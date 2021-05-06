@@ -4,7 +4,7 @@ const get_distance = (user_lat, user_long, dea_lat, dea_long) => {
     result = (c1 + c2) ** 0.5;
     return result;
 };
-
+// The function below was implemented thanks to Tobias --> https://github.com/turbo87/ and specifically from this repository --> https://github.com/Turbo87/utm?id_curso=1574
 function to_latlon(easting, northing) {
     const K0 = 0.9996;
 
