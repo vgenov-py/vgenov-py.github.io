@@ -115,62 +115,76 @@ function to_latlon(easting, northing) {
     return [radians_to_degrees(latitude), radians_to_degrees(longitude)];
 }
 
-// test = to_latlon(443123, 4475002)
-// console.log(test)
+const get_nearest_deas = (user_lat, user_long, dataset) => {
+    distances = [];
+    x_utm = "direccion_coordenada_x";
+    y_utm = "direccion_coordenada_y";
+
+    dataset.map((dea) => {
+        dea_latlng = to_latlon(dea[x_utm], dea[y_utm]);
+        distance = get_distance(user_lat, user_long, dea_latlng[0], dea_latlng[1]);
+        distances.push([dea, distance]);
+    });
+
+    distances.sort(function(a, b) {
+        return a[1] - b[1];
+    });
+    return distances;
+};
 
 window.navigator.geolocation.getCurrentPosition((position) => {
-    console.log(position);
     user_lat = position.coords.latitude;
     user_long = position.coords.longitude;
-    // user_lat = 40.42370631920457
-    // user_long = -3.6704814712125287
     fetch(
             "https://raw.githubusercontent.com/vgenov-py/projects/master/deas/deas.json"
         )
         .then((res) => res.json())
         .then((data) => {
-            data = data["data"];
-            distanceToBeat = 100000;
-            nearestDea = null;
-            data.forEach((dea) => {
-                x = "direccion_coordenada_x";
-                y = "direccion_coordenada_y";
-                deaLatLong = to_latlon(dea[x], dea[y]);
-                distanceFromUserToDea = get_distance(
-                    user_lat,
-                    user_long,
-                    deaLatLong[0],
-                    deaLatLong[1]
+            const result = get_nearest_deas(user_lat, user_long, data["data"]);
+            other_deas_list = result.slice(1, 6);
+            nearest_dea = result[0][0];
+            console.log(nearest_dea);
+            const card_title = document.querySelector("#card_title");
+            card_title.innerText = nearest_dea.direccion_ubicacion;
+            const horario_acceso = document.querySelector("#horario_acceso");
+            horario_acceso.innerText = nearest_dea.horario_acceso;
+            const other_deas = document.querySelector("#other_deas");
+            const go_to_maps = document.querySelector("#go_to_maps");
+            go_to_maps.innerText = "Ir a Maps";
+            go_to_maps.target = "_blank";
+            dea_latlng = to_latlon(
+                nearest_dea.direccion_coordenada_x,
+                nearest_dea.direccion_coordenada_y
+            );
+            go_to_maps.href = `https://www.google.com/maps/search/?api=1&query=${dea_latlng[0]},${dea_latlng[1]}`;
+            other_deas_list.map((dea) => {
+                const div = document.createElement("div");
+                div.className = "d-flex justify-content-center";
+                const ul = document.createElement("ul");
+                ul.className = "list-group list-group-horizontal";
+                const direccion_ubicacion = document.createElement("li");
+                direccion_ubicacion.className = "list-group-item";
+                const horario_acceso = document.createElement("li");
+                horario_acceso.className = "list-group-item";
+                const link_to_maps = document.createElement("li");
+                link_to_maps.className = "list-group-item";
+                const button = document.createElement("a");
+                button.innerText = "Ir a Maps";
+                button.className = "btn btn-success";
+                dea_latlng = to_latlon(
+                    dea[0].direccion_coordenada_x,
+                    dea[0].direccion_coordenada_y
                 );
-                if (distanceFromUserToDea <= distanceToBeat) {
-                    nearestDea = dea;
-                    distanceToBeat = distanceFromUserToDea;
-                }
+                button.target = "_blank";
+                button.href = `https://www.google.com/maps/search/?api=1&query=${dea_latlng[0]},${dea_latlng[1]}`;
+                direccion_ubicacion.innerText = dea[0].direccion_ubicacion;
+                horario_acceso.innerText = dea[0].horario_acceso;
+                link_to_maps.append(button);
+                ul.append(direccion_ubicacion);
+                ul.append(horario_acceso);
+                ul.append(link_to_maps);
+                div.append(ul);
+                other_deas.append(div);
             });
-            console.log(nearestDea);
-            console.log("Distance-->", distanceToBeat);
-            dea_latlong = to_latlon(
-                nearestDea["direccion_coordenada_x"],
-                nearestDea["direccion_coordenada_y"]
-            );
-            console.log(dea_latlong);
-            const distance = get_distance(
-                user_lat,
-                user_long,
-                deaLatLong[0],
-                deaLatLong[1]
-            );
-
-            const container = document.querySelector("#deasContainer");
-            const tr = document.createElement("tr");
-            const address = document.createElement("td");
-            address.innerText = `${nearestDea["direccion_ubicacion"]} ${nearestDea["direccion_via_codigo"]} ${nearestDea["direccion_via_nombre"]} ${nearestDea["direccion_portal_numero"]}`;
-            const linkToMaps = document.createElement("a");
-            linkToMaps.innerText = "Maps";
-            linkToMaps.href = `https://www.google.com/maps/search/?api=1&query=${dea_latlong[0]},${dea_latlong[1]}`;
-
-            tr.append(address);
-            tr.append(linkToMaps);
-            container.append(tr);
         });
 });

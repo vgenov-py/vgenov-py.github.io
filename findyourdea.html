@@ -9,35 +9,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- <script src="./findyourdeaRadio.js" defer></script> -->
     <script src="./findyourdea.js" defer></script>
-
-    <title>DEAS</title>
+    <link rel="stylesheet" href="findyourdea.css">
+    <title>DEA Madrid</title>
 </head>
 
-<body>
-    <div class="container">
-        <nav class="navbar navbar-dark bg-danger" style="margin-bottom: 2em">
-            <div class="container-fluid justify-content-center">
-                <span class="navbar-brand mb-0 h1">DEA</span>
-            </div>
-        </nav>
+<body class="">
+    <nav class="navbar navbar-dark bg-success">
+        <div class="container-fluid justify-content-center">
+            <span class="navbar-brand mb-0 h1">DEA Madrid</span>
+        </div>
+    </nav>
+    <main class="flex">
+        <div class="d-flex justify-content-center">
+            <div class="card " style="width: 18rem;">
+                <img src="aed.svg" class="card-img-top" alt="..." width="10%">
+                <div class="card-body">
+                    <div class="d-flex justify-content-center">
+                        <h5 class="card-title" id="card_title">
 
-        <div class="container justify-content-center">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Dirección</th>
-                        <th scope="col">Maps</th>
-                    </tr>
-                </thead>
-                <tbody id="deasContainer">
-                    <!-- <tr>
+                        </h5>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                    </div>
+                    <p class="card-text" id="horario_acceso"></p>
+                    <div class="d-flex justify-content-center">
+
+                        <a href="#" class="btn btn-success" id="go_to_maps">
+                            <div class="spinner-border text-light" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="container" id="other_deas">
+
+            <div class="d-flex justify-content-center">
+            </div>
+
+        </section>
+
+    </main>
+    <!-- <div class="container justify-content-center">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Dirección</th>
+                    <th scope="col">Maps</th>
+                </tr>
+            </thead>
+            <tbody id="deasContainer">
+                <!-- <tr>
                         <td>Mark</td>
                         <td>Otto</td>
                         <td>@mdo</td>
                     </tr> -->
-                </tbody>
-            </table>
-        </div>
+    </tbody>
+    </table>
     </div>
 </body>
 
