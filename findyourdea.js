@@ -140,14 +140,19 @@ window.navigator.geolocation.getCurrentPosition((position) => {
         )
         .then((res) => res.json())
         .then((data) => {
-            const result = get_nearest_deas(user_lat, user_long, data["data"]);
+            const result = get_nearest_deas(40.434568, -3.676197, data["data"]);
             other_deas_list = result.slice(1, 6);
             nearest_dea = result[0][0];
-            console.log(nearest_dea);
             const card_title = document.querySelector("#card_title");
-            card_title.innerText = nearest_dea.direccion_ubicacion;
+            card_title.innerText =
+                nearest_dea.direccion_ubicacion.length <= 4 ?
+                "Dato no disponible" :
+                nearest_dea.direccion_ubicacion;
             const horario_acceso = document.querySelector("#horario_acceso");
-            horario_acceso.innerText = nearest_dea.horario_acceso;
+            horario_acceso.innerText =
+                nearest_dea.horario_acceso.length <= 0 ?
+                "Horario no disponible" :
+                nearest_dea.horario_acceso;
             const other_deas = document.querySelector("#other_deas");
             const go_to_maps = document.querySelector("#go_to_maps");
             go_to_maps.innerText = "Ir a Maps";
@@ -177,8 +182,14 @@ window.navigator.geolocation.getCurrentPosition((position) => {
                 );
                 button.target = "_blank";
                 button.href = `https://www.google.com/maps/search/?api=1&query=${dea_latlng[0]},${dea_latlng[1]}`;
-                direccion_ubicacion.innerText = dea[0].direccion_ubicacion;
-                horario_acceso.innerText = dea[0].horario_acceso;
+                direccion_ubicacion.innerText =
+                    dea[0].direccion_ubicacion.length <= 4 ?
+                    "Dato no disponible" :
+                    dea[0].direccion_ubicacion;
+                horario_acceso.innerText =
+                    dea[0].horario_acceso.length <= 0 ?
+                    "Horario no disponible" :
+                    dea[0].horario_acceso;
                 link_to_maps.append(button);
                 ul.append(direccion_ubicacion);
                 ul.append(horario_acceso);
