@@ -140,7 +140,7 @@ window.navigator.geolocation.getCurrentPosition((position) => {
         )
         .then((res) => res.json())
         .then((data) => {
-            const result = get_nearest_deas(40.434568, -3.676197, data["data"]);
+            const result = get_nearest_deas(user_lat, user_long, data["data"]);
             other_deas_list = result.slice(1, 6);
             nearest_dea = result[0][0];
             const card_title = document.querySelector("#card_title");
