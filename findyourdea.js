@@ -161,7 +161,7 @@ window.navigator.geolocation.getCurrentPosition((position) => {
                 nearest_dea.direccion_coordenada_x,
                 nearest_dea.direccion_coordenada_y
             );
-            go_to_maps.href = `https://www.google.com/maps/search/?api=1&query=${dea_latlng[0]},${dea_latlng[1]}`;
+            go_to_maps.href = `https://www.google.com/maps/dir/${user_lat},${user_long}/${dea_latlng[0]},${dea_latlng[1]}`;
             other_deas_list.map((dea) => {
                 const div = document.createElement("div");
                 div.className = "d-flex justify-content-center";
@@ -181,7 +181,7 @@ window.navigator.geolocation.getCurrentPosition((position) => {
                     dea[0].direccion_coordenada_y
                 );
                 button.target = "_blank";
-                button.href = `https://www.google.com/maps/search/?api=1&query=${dea_latlng[0]},${dea_latlng[1]}`;
+                button.href = `https://www.google.com/maps/dir/${user_lat},${user_long}/${dea_latlng[0]},${dea_latlng[1]}`;
                 direccion_ubicacion.innerText =
                     dea[0].direccion_ubicacion.length <= 4 ?
                     "Dato no disponible" :
