@@ -1,3 +1,4 @@
+window.location.replace("https://www.deamadrid.com/sdc");
 const whatShouldBe = document.querySelector("#whatShouldBe");
 const getData = () => {
     const date1 = document.querySelector("#date1");
